@@ -1,4 +1,8 @@
 ﻿
+<p>
+    <span class="error" data-bind="text: LastError"></span>
+</p>
+
 <input type="button" value="Add" onclick="javascript:void(0);" data-bind="event: {click: AddUser}" />
 
 <table>
@@ -12,20 +16,20 @@
 		<th data-bind="attr: {class: CalculateSortOrderClass()('Status')}">
 			<a data-bind="event: {click: function(){ ChangeSort('Status');} }" href="javascript:void(0)">Status</a>
 		</th>
-		<th data-bind="attr: {class: CalculateSortOrderClass()('Pages')}">
-			<a data-bind="event: {click: function(){ ChangeSort('Pages');} }" href="javascript:void(0)">Pages</a>
+		<th data-bind="attr: { class: CalculateSortOrderClass()('PagesSorted') }">
+			<a data-bind="event: { click: function () { ChangeSort('PagesSorted'); } }" href="javascript:void(0)">Pages</a>
 		</th>
 		<th data-bind="attr: {class: CalculateSortOrderClass()('IsAdmin')}">
 			<a data-bind="event: {click: function(){ ChangeSort('IsAdmin');} }" href="javascript:void(0)">Admin</a>
 		</th>
 	</tr>
 	<tbody>
-		<!-- ko foreach: Users -->
+		<!-- ko foreach: UsersSorted -->
 		<tr data-bind="event: {click: function(data){ $root.EditUser(data); } }">
 			<td data-bind="text: Firstname, event: {click: function(data){ $root.EditUser(data); } }"></td>
 			<td data-bind="text: Lastname"></td>
 			<td data-bind="text: Status"></td>
-			<td data-bind="text: Pages"></td>
+			<td data-bind="text: PagesSorted"></td>
 			<td class="checkbox"><input type="checkbox" data-bind="checked: IsAdmin" disabled /></td>
 		</tr>
 		<!-- /ko -->
@@ -43,36 +47,37 @@
 			<!-- /ko -->
 			<!-- ko if: Id() == 0 -->
 			<span>Add user</span>
-			<!-- /ko -->
+		    <!-- /ko -->
+            <div class="close" data-bind="event: { click: $root.Cancel }">x</div>
 		</div>
         
 		<div class="form-body">
 			
-			<p>
+			<div class="form-row">
 				<label for="firstname">Firstname</label>
-				<input type="text" id="firstname" data-bind="value: Firstname" />
-			</p>
-			<p>
+			    <input type="text" id="firstname" data-bind="value: Firstname, css: { error: Firstname.hasError() }, attr: { title: Firstname.validationMessage() }" />
+			</div>
+			<div class="form-row">
 				<label for="lastname">Lastname</label>
-				<input type="text" id="lastname" data-bind="value: Lastname" />
-			</p>
-			<p>
+				<input type="text" id="lastname" data-bind="value: Lastname, css: { error: Lastname.hasError() }, attr: { title: Lastname.validationMessage() }" />
+			</div>
+			<div class="form-row">
 				<label for="status">Status</label>
 				<select id="status" data-bind="options: mockModels.userStatuses,
                        value: Status,
                        optionsCaption: 'Choose...'"></select>
-			</p>
-			<p>
+			</div>
+			<div class="form-row">
 				<label>&nbsp;</label>
 				<input type="checkbox" id="isAdmin" data-bind="checked: IsAdmin" />
 				<label for="isAdmin">Admin</label>
-			</p>
-			<div class="clear js-page-input">
+			</div>
+			<div class="form-row">
 				
 				<div class="column">
 
 					<label>User's pages</label>
-					<div class="pages js-user" data-bind="foreach: Pages">
+					<div class="pages js-user" data-bind="foreach: PagesSorted">
 						<div class="page js-page" data-bind="text: $data, attr: {'data-page': $data}"></div>
 					</div>
 				</div>
@@ -83,14 +88,13 @@
 					</div>
 				</div>
 			</div>
-			<p class="clear">
-				<input type="button" value="Save" onclick="javascript:void(0);" data-bind="event: {click: $root.Save}" />
+			<div class="form-row">
+				<input type="button" value="Save" onclick="javascript: void (0);" data-bind="event: { click: $root.Save }, enable: !hasError()" />
 				<input type="button" value="Cancel" onclick="javascript:void(0);" data-bind="event: {click: $root.Cancel}" />
 				<!-- ko if: Id() > 0 -->
 				<input type="button" value="Delete" onclick="javascript:void(0);" data-bind="event: {click: $root.Delete}" />
 				<!-- /ko -->
-			</p>
-			<p class="clear"/>
+			</div>
 		</div>
 	</div>
 </div>

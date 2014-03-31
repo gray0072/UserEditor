@@ -49,7 +49,7 @@ h1
 
 header .content-wrapper
 {
-    padding: 40px;
+    padding: 10px 40px 0 40px;
 }
 
 /* forms */
@@ -57,10 +57,19 @@ header .content-wrapper
 input[type="checkbox"]
 {
     background: transparent;
-    border: inherit;
+    border: none;
     width: auto;
     margin: 5px;
 }
+
+input:focus, select:focus {
+    outline-color: gray;
+}
+
+input.error:focus {
+    outline-color: #f88;
+}
+
 
 /* tables
 ----------------------------------------------------------*/
@@ -74,7 +83,6 @@ table
 
 th
 {
-    font-size: 1.2em;
     text-align: left;
     border: 1px solid black;
     padding: 5px 10px;
@@ -101,14 +109,14 @@ th a:hover
 
 th.asc a, th.desc a
 {
-    margin-left: 1.5em;
+    margin-left: 1em;
 }
 
 th.asc a:before, th.desc a:before
 {
     display: block;
     position: absolute;
-    left: -1.5em;
+    left: -1.2em;
     top: 20%;
     font-size: 0.75em;
 }
@@ -125,7 +133,6 @@ th.desc a:before
 
 td
 {
-    padding: 0.25em 2em 0.25em 0em;
     border: 1px solid black;
     padding: 5px 10px;
     cursor: pointer;
@@ -156,18 +163,18 @@ tr:nth-child(2n) {
     width: 100%;
     height: 100%;
     z-index: 1000;
-    background: rgba(0, 0, 0, 0.5);            
 }
 
 .cover-form .form {
-    width: 500px;
+    width: 450px;
     position: absolute;
     top: 50%;
     left: 50%;
     margin-top: -200px;
     margin-left: -250px;
     border: 2px solid black;
-    border-radius: 10px;        
+    border-radius: 10px;  
+    background: #fff;        
 }
 
 .form-head {
@@ -175,40 +182,85 @@ tr:nth-child(2n) {
     border-bottom: 2px solid black;
     text-align: center;
     padding: 5px;   
-    border-radius: 10px 10px 0 0; 
+    border-radius: 10px 10px 0 0;
+    position: relative;
+}
+
+.form-head .close {
+    color: #E6E6E6;
+    background: black;
+    border-radius: 7px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 14px;
+    height: 14px;
+    line-height: 1em;
+    font-weight: bold;
+    font-family: monospace;
+    cursor: pointer;
 }
 
 .form-body {    
-    background: #fff;    
-    padding: 30px;
+    padding: 20px;
     border-radius: 0 0 10px 10px;
 }
 
-.form-body p>label, .form-body input{
+.form-body .form-row {
+    padding: 0;
+    margin: 0;
+    margin-top: 10px;
+}
+
+.form-body .form-row:first-child {
+    margin-top: 0;
+}
+
+.form-body .form-row:after {
+    content:'';
+    display:block;
+    clear: both;
+}
+
+.form-body .form-row>label, .form-body input{
     float: left;
 }
 
-.form-body p>label{
-    width: 30%;
+.form-body .form-row>label{
+    width: 100px;
 }
 
-.form-body input[type="text"], .form-body input[type="select"] {
-    width: 60%;
+.form-body input[type="text"] {
+    width: 293px;
+    border: 2px solid black;
+    padding-left: 0.25em;
+}
+
+.form-body select {
+    width: 300px;
+    border: 2px solid black;
+    border-radius: 4px;
 }
 
 .form-body .pages {
-    width: 80%;
+    width: 175px;
     height: 120px;
     border: 2px solid black;
 }
 
 .form-body .column {
     float: left;
-    width: 50%;
+    margin-left: 40px;
  }
+
+.form-body .column:first-child {
+    margin-left: 0;
+}
 
 .form-body .pages .page {
     cursor: move;
+    padding: 4px;
+    display: table;
 }
 
 .clear {
@@ -220,11 +272,22 @@ input[type=button]
     border: 2px solid black;
     background: #E6E6E6;
     border-radius: 4px;
-    padding: 5px 15px;
-    font-size: 1.2em;
+    padding: 1px 35px;
+    font-size: 1em;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 .current-sort {
     text-decoration: underline;
+}
+
+
+span.error {
+    color: red;
+}
+
+input.error {
+    border-color: red !important; 
+
 }
