@@ -17,15 +17,15 @@ namespace UserEditor.Controllers
         // GET api/users
         public IEnumerable<UserDto> Get()
         {
-            return context.Users.ToList().Select(t => new UserDto()
+            return context.Users.AsEnumerable().Select(user => new UserDto()
             {
-                Id = t.Id,
-                Firstname = t.Firstname,
-                Lastname = t.Lastname,
-                Status = t.Status,
-                Pages = string.IsNullOrEmpty(t.Pages) ? null : t.Pages.Split(';'),
-                IsAdmin = t.IsAdmin
-            }).ToList();
+                Id = user.Id,
+                Firstname = user.Firstname,
+                Lastname = user.Lastname,
+                Status = user.Status,
+                Pages = user.PagesArray,
+                IsAdmin = user.IsAdmin
+            });
         }
 
         // GET api/users/5
@@ -41,7 +41,7 @@ namespace UserEditor.Controllers
                                Firstname = user.Firstname,
                                Lastname = user.Lastname,
                                Status = user.Status,
-                               Pages = string.IsNullOrEmpty(user.Pages) ? null : user.Pages.Split(';'),
+                               Pages = user.PagesArray,
                                IsAdmin = user.IsAdmin
                            };
             }
@@ -58,7 +58,7 @@ namespace UserEditor.Controllers
                                Firstname = value.Firstname,
                                Lastname = value.Lastname,
                                Status = value.Status,
-                               Pages = value.Pages == null ? null : string.Join(";", value.Pages),
+                               PagesArray = value.Pages,
                                IsAdmin = value.IsAdmin
                            };
             context.Users.Add(user);
@@ -76,7 +76,7 @@ namespace UserEditor.Controllers
                 user.Firstname = value.Firstname;
                 user.Lastname = value.Lastname;
                 user.Status = value.Status;
-                user.Pages = value.Pages == null ? null : string.Join(";", value.Pages);
+                user.PagesArray = value.Pages;
                 user.IsAdmin = value.IsAdmin;
             }
 
@@ -89,6 +89,12 @@ namespace UserEditor.Controllers
             var user = context.Users.FirstOrDefault(u => u.Id == id);
             context.Users.Remove(user);
             context.SaveChanges();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            context.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

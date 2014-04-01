@@ -19,8 +19,10 @@ namespace UserEditor.Models.ViewModels
 
         public string Status { get; set; }
 
-        public ICollection<string> Pages { get; set; }
+        public string[] Pages { get; set; }
 
         public bool IsAdmin { get; set; }
+
+
     }
 }

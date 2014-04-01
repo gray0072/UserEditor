@@ -23,5 +23,17 @@ namespace UserEditor.Models
         public string Pages { get; set; }
 
         public bool IsAdmin { get; set; }
+
+        public string[] PagesArray 
+        {
+            get
+            {
+                return string.IsNullOrEmpty(this.Pages) ? null : this.Pages.Split(';');
+            }
+            set
+            {
+                this.Pages = value == null ? null : string.Join(";", value);
+            }
+        }
     }
 }
