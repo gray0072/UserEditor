@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace UserEditor.Models.ViewModels
+﻿namespace UserEditor.Models.ViewModels
 {
     using System.ComponentModel.DataAnnotations;
 

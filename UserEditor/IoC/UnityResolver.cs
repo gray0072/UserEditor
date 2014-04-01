@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Web.Http.Dependencies;
+using Microsoft.Practices.Unity;
 
 namespace UserEditor.IoC
 {
-    using System.Web.Http.Dependencies;
-
-    using Microsoft.Practices.Unity;
-
     public class UnityResolver : IDependencyResolver
     {
         protected IUnityContainer container;
