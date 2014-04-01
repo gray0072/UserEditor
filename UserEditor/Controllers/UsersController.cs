@@ -14,13 +14,13 @@ namespace UserEditor.Controllers
 
     public class UsersController : ApiController
     {
-        private IUsersService _usersService = new UsersService();
+        private IUsersService _usersService;
 
 
-        //public UsersController(IUsersService usersService)
-        //{
-        //    _usersService = usersService;
-        //}
+        public UsersController(IUsersService usersService)
+        {
+            _usersService = usersService;
+        }
 
         // GET api/users
         public IEnumerable<UserDto> Get()

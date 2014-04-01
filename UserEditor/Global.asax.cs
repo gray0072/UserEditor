@@ -12,7 +12,12 @@ namespace UserEditor
     using System.Data.Entity.Migrations;
     using System.Data.Entity.Migrations.Model;
 
+    using Microsoft.Practices.Unity;
+
+    using UserEditor.Controllers;
+    using UserEditor.IoC;
     using UserEditor.Migrations;
+    using UserEditor.Models;
 
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
 	// visit http://go.microsoft.com/?LinkId=9394801
@@ -30,6 +35,10 @@ namespace UserEditor
 			AuthConfig.RegisterAuth();
 
             this.UpdateDatabase();
+
+            var unity = new UnityContainer();
+            unity.RegisterType<IUsersService, UsersService>();
+            GlobalConfiguration.Configuration.DependencyResolver = new UnityResolver(unity);
 		}
 
 	    private void UpdateDatabase()
