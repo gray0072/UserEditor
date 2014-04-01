@@ -180,7 +180,9 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DB\User.cs" />
+    <Compile Include="Models\IUsersService.cs" />
     <Compile Include="Models\UsersDB.cs" />
+    <Compile Include="Models\UsersService.cs" />
     <Compile Include="Models\ViewModels\UserDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
