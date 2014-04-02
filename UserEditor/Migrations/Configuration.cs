@@ -3,14 +3,15 @@ namespace UserEditor.Migrations
     using System.Collections.Generic;
     using System.Data.Entity.Migrations;
 
-    using UserEditor.Models;
+    using UserEditor.Models.DB;
 
     internal sealed class Configuration : DbMigrationsConfiguration<UsersDB>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
-            ContextKey = "UserEditor.UsersDB";
+            this.AutomaticMigrationsEnabled = true;
+            this.AutomaticMigrationDataLossAllowed = true;
+            this.ContextKey = "UserEditor.UsersDB";
         }
 
         protected override void Seed(UsersDB context)
@@ -23,7 +24,7 @@ namespace UserEditor.Migrations
                                         Firstname = "John",
                                         Lastname = "Smith",
                                         Status = "Married",
-                                        Pages = "Page1;Page2",
+                                        PagesString = "Page1;Page2",
                                         IsAdmin = false
                                     },
                                 new User
@@ -32,7 +33,7 @@ namespace UserEditor.Migrations
                                         Firstname = "John",
                                         Lastname = "Doe",
                                         Status = "Married",
-                                        Pages = "Page1;Page3",
+                                        PagesString = "Page1;Page3",
                                         IsAdmin = true
                                     },
                                 new User
@@ -41,7 +42,7 @@ namespace UserEditor.Migrations
                                         Firstname = "Mary",
                                         Lastname = "Foo",
                                         Status = "Single",
-                                        Pages = "Page2;Page3",
+                                        PagesString = "Page2;Page3",
                                         IsAdmin = true
                                     },
                                 new User
@@ -50,7 +51,7 @@ namespace UserEditor.Migrations
                                         Firstname = "Janny",
                                         Lastname = "Smith",
                                         Status = "Divorced",
-                                        Pages = "Page3",
+                                        PagesString = "Page3",
                                         IsAdmin = false
                                     }
                             };

@@ -6,15 +6,11 @@ namespace UserEditor
 {
     using System.Data.Entity.Migrations;
     using System.Web.Mvc;
-
     using Microsoft.Practices.Unity;
     using UserEditor.IoC;
     using UserEditor.Migrations;
     using UserEditor.Models;
-
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
-	// visit http://go.microsoft.com/?LinkId=9394801
-
+    
 	public class MvcApplication : System.Web.HttpApplication
 	{
 		protected void Application_Start()
@@ -28,9 +24,10 @@ namespace UserEditor
 			AuthConfig.RegisterAuth();
 
             this.UpdateDatabase();
-
+            
             var unity = new UnityContainer();
-            unity.RegisterType<IUsersService, UsersService>();
+            //unity.RegisterType<IUsersService, UsersDbService>();
+            unity.RegisterType<IUsersService, UsersXmlService>(new InjectionConstructor(Server.MapPath(@"~\App_Data\Users.xml")));
             GlobalConfiguration.Configuration.DependencyResolver = new UnityResolver(unity);
 		}
 

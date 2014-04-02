@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using UserEditor.Models.ViewModels;
 
 namespace UserEditor.Models
 {
-    using UserEditor.Models.ViewModels;
-
     public interface IUsersService : IDisposable
     {
         IEnumerable<UserDto> Get();

@@ -1,6 +1,5 @@
 ﻿using System.Data.Entity;
-
-using UserEditor.Models;
+using UserEditor.Models.DB;
 
 namespace UserEditor
 {

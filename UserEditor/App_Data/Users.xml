@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<ArrayOfUser xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <User id="1">
+    <firstname>John</firstname>
+    <lastname>Smith</lastname>
+    <status>Married</status>
+    <pages>
+      <page>Page1</page>
+      <page>Page2</page>
+    </pages>
+    <admin>false</admin>
+  </User>
+  <User id="2">
+    <firstname>John</firstname>
+    <lastname>Doe</lastname>
+    <status>Married</status>
+    <pages>
+      <page>Page1</page>
+      <page>Page3</page>
+    </pages>
+    <admin>true</admin>
+  </User>
+  <User id="3">
+    <firstname>Mary</firstname>
+    <lastname>Foo</lastname>
+    <status>Single</status>
+    <pages>
+      <page>Page2</page>
+      <page>Page3</page>
+    </pages>
+    <admin>true</admin>
+  </User>
+  <User id="4">
+    <firstname>Janny</firstname>
+    <lastname>Smith</lastname>
+    <status>Divorced</status>
+    <pages>
+      <page>Page3</page>
+    </pages>
+    <admin>false</admin>
+  </User>
+</ArrayOfUser>

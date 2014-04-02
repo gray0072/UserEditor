@@ -1,9 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace UserEditor.Models
+﻿namespace UserEditor.Models.DB
 {
-    public class User
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    public class User : IUser
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -15,20 +15,20 @@ namespace UserEditor.Models
 
         public string Status { get; set; }
 
-        public string Pages { get; set; }
-
-        public bool IsAdmin { get; set; }
-
-        public string[] PagesArray 
+        public string[] Pages
         {
             get
             {
-                return string.IsNullOrEmpty(this.Pages) ? null : this.Pages.Split(';');
+                return string.IsNullOrEmpty(this.PagesString) ? null : this.PagesString.Split(';');
             }
             set
             {
-                this.Pages = value == null ? null : string.Join(";", value);
+                this.PagesString = value == null ? null : string.Join(";", value);
             }
         }
+
+        public bool IsAdmin { get; set; }
+
+        public string PagesString { get; set; }
     }
 }

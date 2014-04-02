@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using UserEditor.Models.DB;
+using UserEditor.Models.ViewModels;
 
 namespace UserEditor.Models
 {
-    using UserEditor.Models.ViewModels;
-
-    public class UsersService : IUsersService
+    public class UsersDbService : IUsersService
     {
         private UsersDB _context = new UsersDB();
 
@@ -17,7 +17,7 @@ namespace UserEditor.Models
                 Firstname = user.Firstname,
                 Lastname = user.Lastname,
                 Status = user.Status,
-                Pages = user.PagesArray,
+                Pages = user.Pages,
                 IsAdmin = user.IsAdmin
             });
         }
@@ -34,7 +34,7 @@ namespace UserEditor.Models
                     Firstname = user.Firstname,
                     Lastname = user.Lastname,
                     Status = user.Status,
-                    Pages = user.PagesArray,
+                    Pages = user.Pages,
                     IsAdmin = user.IsAdmin
                 };
             }
@@ -50,7 +50,7 @@ namespace UserEditor.Models
                 Firstname = value.Firstname,
                 Lastname = value.Lastname,
                 Status = value.Status,
-                PagesArray = value.Pages,
+                Pages = value.Pages,
                 IsAdmin = value.IsAdmin
             };
             this._context.Users.Add(user);
@@ -67,7 +67,7 @@ namespace UserEditor.Models
                 user.Firstname = value.Firstname;
                 user.Lastname = value.Lastname;
                 user.Status = value.Status;
-                user.PagesArray = value.Pages;
+                user.Pages = value.Pages;
                 user.IsAdmin = value.IsAdmin;
             }
 
